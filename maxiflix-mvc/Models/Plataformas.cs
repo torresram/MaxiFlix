@@ -1,4 +1,6 @@
-﻿namespace maxiflix_mvc.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace maxiflix_mvc.Models
 {
     public class Plataformas
     {

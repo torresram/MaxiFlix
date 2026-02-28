@@ -9,5 +9,6 @@ namespace maxiflix_mvc.Models
         public string Titulo { get; set; }
         public int MinutosDuracion { get; set; }
         public string Sinopsis { get; set; }
+        public int RepartoId { get; set; }
     }
 }
