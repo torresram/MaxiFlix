@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("maxiflix-mvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ff2e7ba761b9ab2567d62807ec571d104b31ed6")]
 [assembly: System.Reflection.AssemblyProductAttribute("maxiflix-mvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("maxiflix-mvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
