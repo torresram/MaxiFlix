@@ -3,7 +3,9 @@
     public class PeliculasClasificaciones
     {
         public Guid Id { get; set; }
-        public int PeliculaId { get; set; }
-        public int ClasificacionId { get; set; }
+        public Guid PeliculaId { get; set; }
+        public Peliculas? Pelicula { get; set; }
+        public Guid ClasificacionId { get; set; }
+        public Clasificaciones? Clasificacion { get; set; }
     }
 }

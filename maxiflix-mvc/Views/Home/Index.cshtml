@@ -1,8 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="display-1 text-primary text-center" style="text-shadow:2px 2px #130c0029;">MaxiFlix</h1>
+<hr />
+<h2>Catálogo</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var peli in Model.Peliculas)
+    {
+        var poster = Model.Media.FirstOrDefault(m => m.PeliculaId == peli.Id);
+
+        var posterUrl = poster?.MediaUrl ?? "https://img.freepik.com/premium-vector/no-photography-sign-sticker-with-text-inscription-isolated-background_226544-351.jpg?w=2000";
+
+        <div class="col">
+            <div class="card border-primary mb-3 h-100">
+                <img src="@posterUrl" class="card-img-top img-fluid object-fit-cover" alt="" onerror="this.onerror=null; this.src='https://pixy.org/src2/599/5990269.png';">
+                <div class="card-body text-primary">
+                    <h5 class="card-title">@peli.Titulo</h5>
+                    <p class="card-text">@peli.Sinopsis</p>
+                    <small class="text-muted">@peli.MinutosDuracion min | @peli.FechaEstreno.Year</small>
+                    <p><a asp-controller="Pelicula" asp-action="Details" asp-route-id="@peli.Id" class="link-info">Detalles</a></p>
+                </div>
+            </div>
+        </div>
+    }
 </div>

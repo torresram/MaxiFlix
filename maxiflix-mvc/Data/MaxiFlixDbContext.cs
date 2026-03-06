@@ -28,9 +28,19 @@ namespace maxiflix_mvc.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Esto modifica la propiedad precio en la tabla especificada
             modelBuilder.Entity<Plataformas>()
                 .Property(p => p.Precio)
                 .HasPrecision(18, 2);
+
+            //Esto cambia el borrado de datos a Restrict en todas las tablas
+            base.OnModelCreating(modelBuilder);
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }

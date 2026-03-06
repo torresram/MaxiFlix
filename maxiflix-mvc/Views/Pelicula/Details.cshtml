@@ -1,0 +1,105 @@
+﻿@model PeliculaViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>@Model.Pelicula.Titulo</h1>
+
+<div>
+    <h4>Detalles</h4>
+    <hr />
+    <div class="card mb-3" style="max-width: 80%; margin: 0 10% 0 10%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                @foreach (var media in Model.Medias)
+                {
+                    if (media.Tipo.Descripcion == "Poster")
+                    {
+                        <img src="@media.MediaUrl" class="img-fluid rounded-start" alt="..." onerror="this.onerror=null; this.src='https://pixy.org/src2/599/5990269.png';">
+                    }
+                }
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-text">Director: @Model.Pelicula.Director.Nombre @Model.Pelicula.Director.Apellido</h5>
+                    <p>
+                        <small class="text-body-secondary">@Model.Clasificacion.Clasificacion.Descripcion</small><br />
+                        <small class="text-body-secondary">
+                            @for (int i = 0; i < Model.Generos.Count; i++)
+                            {
+                                @Model.Generos[i].Genero.Descripcion
+
+                                @if (i < Model.Generos.Count - 1)
+                                {
+                                    <span> | </span>
+                                }
+                            }
+                        </small>
+                    </p>
+                    <p class="card-text">@Model.Pelicula.Sinopsis</p>
+                    <p>
+                        <!--Aca estoy teniendo un error cuando el director entra en ultimo lugar en la lista de Reparto. Me termina colocando una | ¡CHEQUEAR!-->
+                        @for (int i = 0; i < Model.Reparto.Count; i++)
+                        {
+                            if (Model.Reparto[i].Reparto.Dirige != true)
+                            {
+                                <small class="text-body-secondary">@Model.Reparto[i].Reparto.Nombre @Model.Reparto[i].Reparto.Apellido</small>
+
+                                @if (i < Model.Reparto.Count - 1)
+                                {
+                                    <span> | </span>
+                                }
+                            }
+                        }
+                    </p>
+                    <p class="card-text"><small class="text-body-secondary">@Model.Pelicula.MinutosDuracion min | @Model.Pelicula.FechaEstreno.Year</small></p>
+                    <p class="text-body-secondary">⭐ @Model.Puntuacion.ToString("0.0")/5 (@Model.CantidadPuntuaciones votos)</p>
+                    @foreach (var media in Model.Medias)
+                    {
+                        if (media.Tipo.Descripcion == "Trailer")
+                        {
+                            <a href="@media.MediaUrl" class="text-info">🎞️ Ver trailer</a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @* <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEstreno)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaEstreno)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MinutosDuracion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MinutosDuracion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sinopsis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sinopsis)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Director.Id)
+        </dd>
+    </dl> *@
+</div>
+<div>
+    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@Model?.Pelicula.Id">Editar</a> |
+    <a class="btn btn-outline-info" asp-controller="Home" asp-action="Index">Volver</a>
+</div>
